@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="my-5">These are the notes:</h1>
+    <!--
+        This is Django template language, we create a list and in brackets
+        , for each note in the notes var we passed, we create a list item with the title
+        and eventually end the loop
+    -->
+    <div class="row row-cols3 g-2">
+        {% for note in notes %}
+        <div class="col">
+            <div class="p-3 border">
+                <a href="{% url 'notes.detail' pk=note.id %}" class="text-dark">
+                    <h3>{{note.title}}</h3>
+                </a>
+                {{note.text|truncatechars:10}}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
